@@ -1,0 +1,439 @@
+@font-face {
+  font-family: "RT";
+  src: url("../../dist/fonts/RT-reg.otf")
+}
+
+@font-face {
+  font-family: "RHL";
+  src: url("../../dist/fonts/RHL-reg.otf")
+}
+
+@font-face {
+  font-family: "CT-bk";
+  src: url("../../dist/fonts/CSTD-bk.otf")
+}
+
+@font-face {
+  font-family: "RHL-it";
+  src: url("../../dist/fonts/RHL-ital.otf")
+}
+
+$accent-color: #E53C1B;
+$total-canvas-width: 165%;
+$left-shift: -($total-canvas-width - 100%);
+$nav-width: 33%;
+$profile-width: -$left-shift;
+$profile-width-out-of-total-canvas: (($total-canvas-width - 100%) / $total-canvas-width) * 100%;
+$pane-side-padding: 6.875rem;
+$pane-vert-padding: 3.75rem;
+
+@mixin font-rt {
+  font-family: 'RT', Garamond, 'Times New Roman', serif;
+}
+
+@mixin font-rhl {
+  font-family: 'RHL', Garamond, 'Times New Roman', serif;
+}
+
+@mixin font-rhl-it {
+  font-family: "RHL-it", Helvetica, sans-serif;
+}
+
+@mixin font-ct-bk {
+  font-family: 'CT-bk', Helvetica, sans-serif;
+}
+
+.default-link {
+  @include font-ct-bk;
+  color: $accent-color;
+}
+
+/* RESET */
+html, body, header, nav, h1, a,
+ul, li, strong, main, button, i,
+section, figure, img, div, h2, p, form,
+fieldset, label, input, textarea,
+span, article, footer, time, small {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  font: inherit;
+  color: inherit;
+  text-align: inherit;
+  text-decoration: inherit;
+  vertical-align: inherit;
+  box-sizing: inherit;
+  background: transparent;
+  list-style: none;
+}
+
+html, body {
+  font-size: 11px;
+  overflow-x: hidden;
+}
+
+// Mobile overlay to switch to landscape view
+.mobile-portrait-overlay {
+  @include font-ct-bk;
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 10000;
+  display: none;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  background-color: #363636;
+  .overlay-text {
+    color: white;
+    font-size: 4rem;
+    box-sizing: border-box;
+    padding: 3rem;
+  }
+
+}
+@media screen and (max-aspect-ratio: 7/8) {
+  .mobile-portrait-overlay {
+    display: flex;
+  }
+}
+
+@media (min-width: 800px) {
+  html {
+    font-size: 13px;
+  }
+}
+@media (min-width: 1025px) {
+  html {
+    font-size: 14px;
+  }
+}
+@media (min-width: 1281px) {
+  html {
+    font-size: 15px;
+  }
+}
+@media (min-width: 1441px) {
+  html {
+    font-size: 16px;
+  }
+}
+@media (min-width: 1681px) {
+  html {
+    font-size: 18px;
+  }
+}
+
+.group:after {
+  content: "";
+  display: block;
+  clear: both;
+}
+
+main {
+  position: relative;
+  display: flex;
+  flex-flow: row nowrap;
+  width: $total-canvas-width;
+  transition: left 1000ms ease-in-out;
+  left: 0;
+  &.inactive {
+    left: $left-shift;
+  }
+}
+
+.left-nav {
+  @include font-rhl;
+  box-sizing: border-box;
+  background-color: #FFFFFF;
+  width: $nav-width;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  position: relative;
+  align-items: center;
+  .name-title {
+    position: absolute;
+    top: 70px;
+    cursor: default;
+    font-size: 1.5rem;
+  }
+}
+
+.nav-list {
+  li {
+    margin: 1.875rem 0;
+    text-align: right;
+  }
+}
+
+.project-link {
+  text-align: right;
+  font-size: 3rem;
+  opacity: 0.3;
+  cursor: pointer;
+  transition: opacity 100ms;
+  &.active {
+    opacity: 1;
+    cursor: default;
+    &:hover {
+      opacity: 1;
+    }
+  }
+  &:hover {
+    opacity: 0.6;
+  }
+}
+
+.project-pane {
+  background-color: #F2F3EF;
+  width: 100% - $nav-width;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .project-details {
+    box-sizing: border-box;
+    margin-top: 1.5rem;
+    width: 80%;
+    opacity: 0;
+    transition: opacity 200ms;
+    &.visible {
+      opacity: 1;
+    }
+  }
+}
+
+.profile {
+  background-color: #FFFFFF;
+  width: $profile-width-out-of-total-canvas;
+  position: relative;
+  &.inactive {
+    display: none;
+  }
+  .profile-inner {
+    overflow-y: scroll;
+    height: 100vh;
+    box-sizing: border-box;
+    padding: $pane-vert-padding $pane-side-padding $pane-vert-padding $pane-side-padding;
+  }
+  .resume-link-container {
+    position: absolute;
+    z-index: 10;
+    background-color: rgba(255, 255, 255, 0.8);
+    width: 100%;
+    padding: 4rem 0 1.25rem $pane-side-padding;
+    box-sizing: border-box;
+    .resume-link {
+      @include font-ct-bk;
+      font-size: 1.125rem;
+      color: $accent-color;
+      img {
+        height: 0.9rem;
+      }
+    }
+  }
+}
+
+.projects {
+  width: 60.6060606%;
+  height: 100%;
+  position: relative;
+  display: flex;
+  .overlay {
+    position: absolute;
+    width: 100%;
+    height: 100vh;
+    z-index: 10;
+    background-color: #000000;
+    opacity: 0.5;
+    transition: opacity 300ms;
+    cursor: pointer;
+    display: none;
+    &.visible {
+      display: block;
+    }
+    &.inactive {
+      opacity: 0;
+    }
+  }
+}
+
+.profile-link {
+  @include font-ct-bk;
+  display: block;
+  position: absolute;
+  top: $pane-vert-padding;
+  right: $pane-side-padding;
+  font-size: 1.125rem;
+  color: $accent-color;
+  padding: 0.5rem 1rem;
+  border: 1px solid $accent-color;
+  border-radius: 0.2rem;
+  transition: background-color 100ms, color 100ms;
+  &:hover {
+    color: #FFFFFF;
+    background-color: $accent-color;
+  }
+}
+
+.main-img-container {
+  position: relative;
+  max-width: 75%;
+  margin: 0 auto 2.5rem auto;
+  .macbook {
+    z-index: 1;
+    display: block;
+    width: 100%;
+  }
+}
+
+.screenshot-outer-container {
+  width: 75%;
+  height: 81%;
+  top: 6.7%;
+  left: 50.25%;
+  transform: translateX(-50.25%);
+  position: absolute;
+  overflow: hidden;
+  .screenshot-inner-container {
+    position: relative;
+    top: 0;
+    left: 0;
+    height: 100%;
+  }
+}
+
+
+.project-screenshot {
+  position: absolute;
+  display: none;
+  max-width: 100%;
+  min-height: 100%;
+  transition: transform 1500ms ease-in-out;
+  &.animation-complete {
+    bottom: 0;
+  }
+  &.active {
+    display: block;
+  }
+}
+
+.project-description {
+  @include font-rt;
+  display: none;
+  width: 95%;
+  margin: auto;
+  p {
+    @include font-rhl-it;
+    margin: 0.5rem 0;
+    font-size: 1.25rem;
+    line-height: 2.5rem;
+  }
+  &.active {
+    display: block;
+  }
+}
+
+.external-project-links {
+  @extend .default-link;
+  margin-top: 1.25rem;
+  font-size: 1.3rem;
+  a {
+    font-weight: bold;
+    margin-right: 1rem;
+  }
+}
+
+.profile-intro {
+  position: relative;
+  height: 90vh;
+}
+
+.headshot {
+  position: absolute;
+  display: block;
+  max-width: 65%;
+  max-height: 30rem;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.brief-description {
+  @include font-rhl;
+  position: absolute;
+  z-index: 2;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 70%;
+  font-size: 2rem;
+  &:after {
+    content:"";
+    display: block;
+    position: absolute;
+    bottom: -5rem;
+    background-image: url(../../dist/images/large-arrow-1.png);
+    background-size: 0.840625rem 2.625rem;
+    width: 0.840625rem;
+    height: 2.625rem;
+  }
+}
+
+.about-me {
+  margin: 3.125rem 0;
+}
+
+.category {
+  @include font-rhl;
+  width: 35%;
+  float: left;
+  font-size: 1.5rem;
+}
+
+.details {
+  @include font-rt;
+  padding-top: 0.375rem;
+  width: 65%;
+  float: right;
+  font-size: 1.2rem;
+  p {
+    line-height: 2rem;
+    span {
+      display: block;
+      float: left;
+      width: 20%;
+    }
+  }
+  a {
+    @extend .default-link;
+  }
+}
+
+.skills-list {
+  float: left;
+  display: flex;
+  flex-flow: row wrap;
+  margin-top: -0.3125rem;
+  li {
+    width: 33%;
+    margin: 0.3125rem 0;
+  }
+}
+
+.contact-list {
+  margin-bottom: 0.375rem;
+}
+
+.credits {
+  margin-top: 1rem;
+  @include font-rt;
+  font-size: 1rem;
+  a {
+    @extend .default-link;
+  }
+}
