@@ -16,7 +16,12 @@
 
 .default-link, .external-project-links, .details a, .credits a {
   font-family: 'CT-bk', Helvetica, sans-serif;
-  color: #E53C1B; }
+  color: #8FA0A8;
+  transition: color 800ms;}
+
+.default-link:hover {
+  color: #8AE9C1;
+  transition: color 800ms;}
 
 /* RESET */
 html, body, header, nav, h1, a,
@@ -131,6 +136,17 @@ main {
     border-right: 3px solid black;
     transition:
       border-right: 1s ease-out 1s;
+      border-width: 3px;
+      border-style: solid;
+      -webkit-border-image:
+        -webkit-linear-gradient(black, rgba(0, 0, 0, 0)) 1 100%;
+      -moz-border-image:
+        -moz-linear-gradient(black, rgba(0, 0, 0, 0)) 1 100%;
+      -o-border-image:
+        -o-linear-gradient(black, rgba(0, 0, 0, 0)) 1 100%;
+      border-image:
+        linear-gradient(to bottom, black, rgba(0, 0, 0, 0)) 1 100%;
+        border-left: none;
     opacity: 1;
     cursor: default; }
     .project-link.active:hover {
@@ -143,11 +159,12 @@ main {
   width: 67%;
   min-height: 100vh;
   display: flex;
-  justify-content: center;
-  align-items: center; }
+  justify-content: center;}
   .project-pane .project-details {
+    flex-direction: column;
+    align-items: center;
     box-sizing: border-box;
-    margin-top: 1.5rem;
+    margin-top: 12%;
     width: 80%;
     opacity: 0;
     transition: opacity 200ms; }
@@ -199,21 +216,27 @@ main {
     .projects .overlay.inactive {
       opacity: 0; }
 
+ .profile-link-div{
+   margin-top: 4%
+ }
+
 .profile-link {
   font-family: 'CT-bk', Helvetica, sans-serif;
-  display: block;
-  position: absolute;
   top: 3.75rem;
   right: 6.875rem;
   font-size: 1.125rem;
-  color: #E53C1B;
+  color: #8FA0A8;
   padding: 0.5rem 1rem;
-  border: 1px solid #E53C1B;
+  border: 1px solid #8FA0A8;
   border-radius: 0.2rem;
-  transition: background-color 100ms, color 100ms; }
+  margin-top: 20px;
+  transition: background-color 350ms, color 800ms, border 300ms;}
+
   .profile-link:hover {
     color: #FFFFFF;
-    background-color: #E53C1B; }
+    background-color: #8AE9C1;
+    border-color: #8AE9C1;
+    transition: background-color 350ms, color 800ms, border 300ms;}
 
 .main-img-container {
   position: relative;
@@ -239,11 +262,12 @@ main {
     height: 100%; }
 
 .project-screenshot {
-  position: absolute;
   display: none;
   max-width: 100%;
   min-height: 100%;
-  transition: transform 1500ms ease-in-out; }
+  transition: transform 1500ms ease-in-out;
+  box-shadow: 5px 5px 5px gray;
+  border-radius: 3px;}
   .project-screenshot.animation-complete {
     bottom: 0; }
   .project-screenshot.active {
@@ -265,9 +289,15 @@ main {
 .external-project-links {
   margin-top: 1.25rem;
   font-size: 1.3rem; }
-  .external-project-links a {
+.external-project-links a {
     font-weight: bold;
-    margin-right: 1rem; }
+    margin-right: 1rem;
+    color: #8FA0A8;
+    transition: color 800ms;}
+
+  .external-project-links a:hover {
+    color: #8AE9C1;
+    transition: color 300ms;}
 
 .profile-intro {
   position: relative;
