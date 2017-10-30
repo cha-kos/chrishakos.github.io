@@ -314,6 +314,10 @@ p.brief-description {
   line-height: 1.5;
 }
 
+.project-link li a{
+  font-size: 20px;
+}
+
 /*p.brief-description:after {
   display: block;
   position: absolute;

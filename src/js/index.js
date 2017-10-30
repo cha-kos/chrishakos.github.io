@@ -47,7 +47,7 @@ function toggleProject(project) {
   if (screenshotAnimationTimer) {
     window.clearTimeout(screenshotAnimationTimer);
   }
-
+  debugger
   const newActiveProjectScreenshot = queryEl(`#${project}-screenshot`);
   const newActiveProjectDescription = queryEl(`#${project}-description`);
 
@@ -114,6 +114,7 @@ document.addEventListener('DOMContentLoaded', () => {
     target.classList.add(ACTIVE);
 
     window.setTimeout(() => {
+      debugger
       toggleProject(target.id.split('-')[0]);
       projectDetails.classList.add(VISIBLE);
     }, 200);

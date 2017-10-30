@@ -128,7 +128,7 @@ main {
 
 .project-link {
   padding-right: 20px;
-  font-size: 3rem;
+  font-size: 36px;
   opacity: 0.3;
   cursor: pointer;
   transition: opacity 100ms; }

@@ -98,7 +98,7 @@
 	  if (screenshotAnimationTimer) {
 	    window.clearTimeout(screenshotAnimationTimer);
 	  }
-	
+	  debugger;
 	  var newActiveProjectScreenshot = queryEl('#' + project + '-screenshot');
 	  var newActiveProjectDescription = queryEl('#' + project + '-description');
 	
@@ -176,6 +176,7 @@
 	    target.classList.add(ACTIVE);
 	
 	    window.setTimeout(function () {
+	      debugger;
 	      toggleProject(target.id.split('-')[0]);
 	      projectDetails.classList.add(VISIBLE);
 	    }, 200);
